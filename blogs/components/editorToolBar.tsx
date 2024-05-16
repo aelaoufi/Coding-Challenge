@@ -1,4 +1,3 @@
-// components/EditorToolbar.tsx
 import { Editor } from '@tiptap/react';
 import { FC } from 'react';
 

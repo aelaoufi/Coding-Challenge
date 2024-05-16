@@ -8,7 +8,7 @@ import Underline from '@tiptap/extension-underline';
 import Link from '@tiptap/extension-link';
 import CharacterCount from '@tiptap/extension-character-count';
 import { FC } from 'react';
-import EditorToolbar from './editorTollBar';
+import EditorToolbar from './editorToolBar';
 
 const TextEditor: React.FC = () => {
 	const limit = 700;
