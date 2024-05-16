@@ -1,5 +1,7 @@
 import React, { SVGProps } from 'react'
 import Link from 'next/link'
+import MyDialog from './dialog'
+
 
 function Navbar() {
 	return (
@@ -8,14 +10,8 @@ function Navbar() {
 			<MountainIcon className="h-6 w-6" />
 			<span className="font-semibold">Blogs</span>
 		  </Link>
-		  <div className="group relative">
-			<Link
-			  className="inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-gray-900 text-gray-50 shadow transition-all duration-300 ease-in-out group-hover:bg-gray-800 group-hover:px-6 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
-			  href="#"
-			>
-			  <PlusIcon className="mr-2 h-4 w-4" />
-			  <span>New Post</span>
-			</Link>
+		  <div className="relative">
+			<MyDialog/>
 		  </div>
 		</header>
 	  )

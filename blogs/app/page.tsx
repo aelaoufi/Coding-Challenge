@@ -1,4 +1,5 @@
 import MyCard from "@/components/card";
+import MyDialog from "@/components/dialog";
 import Navbar from "@/components/navbar";
 import Image from "next/image";
 
@@ -9,6 +10,7 @@ export default function Home() {
       <MyCard></MyCard>
       <MyCard></MyCard>
       <MyCard></MyCard>
+      
     </div>
   );
 }

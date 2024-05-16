@@ -1,7 +1,7 @@
 import { Document, Model } from "mongoose";
 import * as Mongoose from "mongoose";
 
-const postSchema = new Mongoose.Schema({
+const blogSchema = new Mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -22,9 +22,9 @@ interface IBlogModel extends Model<IBlogDocument> {}
 
 //postSchema->Document->Model
 
-// const PostModel: IBlogModel = Mongoose.model<IBlogDocument>("post", postSchema);
+// const BlogModel: IBlogModel = Mongoose.model<IBlogDocument>("post", postSchema);
 
-const PostModel: IBlogModel =
-  Mongoose.models.post || Mongoose.model<IBlogDocument>("blogs", postSchema);
+const BlogModel: IBlogModel =
+  Mongoose.models.blogs || Mongoose.model<IBlogDocument>("blogs", blogSchema);
 
-export default PostModel;
+export default BlogModel;
