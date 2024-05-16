@@ -6,13 +6,13 @@ export default function MyCard() {
   return (
     <Card className="relative w-full max-w-4xl rounded-lg shadow-md hover:shadow-lg transition-shadow">
 		<Link
-            className="absolute  m-[22px] w-10 h-10 right-0 rounded-md bg-red-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-red-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+            className="absolute  m-[22px] w-10 h-10 right-0 rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-red-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
             href="#"
           >
 			<DeleteIcon className="absolute right-[9.3px] top-[9.3px]"/>
         </Link>
 		  <Link
-            className="absolute  m-[22px]  w-10 h-10 right-[3.5rem] rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
+            className="absolute  m-[22px]  w-10 h-10 right-[3.1rem] rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-blue-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
             href="#"
           >
             <EditIcon className="absolute right-2"/>
