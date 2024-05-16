@@ -3,6 +3,8 @@ import Link from "next/link"
 import { SVGProps } from "react"
 
 export default function MyCard() {
+
+  
   return (
     <Card className="relative w-full max-w-4xl rounded-lg shadow-md hover:shadow-lg transition-shadow">
 		<Link
