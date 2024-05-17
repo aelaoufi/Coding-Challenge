@@ -1,4 +1,4 @@
-
+"use client";
 import { Button } from "@/components/ui/button"
 import { DialogTrigger, DialogTitle, DialogHeader, DialogFooter, DialogContent, Dialog, DialogDescription } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
@@ -6,8 +6,15 @@ import { Input } from "@/components/ui/input"
 import { SVGProps } from "react"
 import Link from "next/link"
 import TextEditor from "./textEditor"
+import { useEffect, useState } from "react"
 
 export default function MyDialog() {
+
+  const [title, setTitle] = useState<string>('');
+  const [content, setContent] = useState<string>('');
+
+  
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -32,6 +39,7 @@ export default function MyDialog() {
               Blog Title
             </Label>
             <Input
+            onChange={(e) => setTitle(e.target.value)}
               id="blogTitle"
               className="col-span-3"
             />

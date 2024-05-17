@@ -7,10 +7,14 @@ import Italic from '@tiptap/extension-italic';
 import Underline from '@tiptap/extension-underline';
 import Link from '@tiptap/extension-link';
 import CharacterCount from '@tiptap/extension-character-count';
-import { FC } from 'react';
 import EditorToolbar from './editorToolBar';
+import { useState } from 'react';
 
-const TextEditor: React.FC = () => {
+interface Props {
+	_content?: string;
+}
+function TextEditor({_content}: Props) {
+	const [content, setContent] = useState<string>('');
 	const limit = 700;
 	const editor = useEditor({
 		extensions: [
@@ -25,10 +29,13 @@ const TextEditor: React.FC = () => {
 		],
 		editorProps: {
 			attributes: {
-			  class: 'h-full',
+			  class: 'h-full p-4',
 			},
 		  },
-		content: '',
+		content: _content || '',
+		onUpdate({ editor }) {
+			setContent(editor.getHTML());
+		},
 	  });
 	
 	  return (
