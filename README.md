@@ -20,7 +20,7 @@ This project is a blog management application built with Next.js, React, and a M
 Ensure you have the following software installed:
 - Node.js (v14 or later)
 - npm (v6 or later)
-- MongoDB (local or Atlas)
+- MongoDB (Atlas)
 
 ### Installation
 
