@@ -6,17 +6,46 @@ import { Input } from "@/components/ui/input"
 import { SVGProps } from "react"
 import Link from "next/link"
 import TextEditor from "./textEditor"
-import { useEffect, useState } from "react"
+import { useEffect, useState, FormEvent } from "react"
+import axios from 'axios';
+
+
 
 export default function MyDialog() {
 
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
+  const [open, setOpen] = useState(false);
 
+  const handleContentChange = (newContent: string) => {
+    setContent(newContent);
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
   
+    if (!title || !content) {
+      alert("Title and content are required.");
+      return;
+    }
+  
+    try {
+      const res = await axios.post('http://localhost:3000/api/actions', { title, content }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (res.status !== 201) {
+        throw new Error("Failed to fetch topics");
+      }
+      setOpen(false);
+      console.log("Blog post created");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Link
           className="inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-gray-900 text-gray-50 shadow transition-all duration-300 ease-in-out group-hover:bg-gray-800 group-hover:px-6 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
@@ -48,11 +77,11 @@ export default function MyDialog() {
             <Label htmlFor="blogContent" className="text-left">
               Blog Content
             </Label>
-            <TextEditor/>
+            <TextEditor onChange={handleContentChange}/>
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Post</Button>
+          <Button type="submit" onClick={handleSubmit}>Post</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

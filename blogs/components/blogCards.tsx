@@ -32,23 +32,7 @@ const getTopics = async (): Promise<Topic[] | undefined> => {
   }
 };
 
-// export const getOneTopic = async (): Promise<Topic[] | undefined> => {
-//   try {
-//     const res = await axios.get<ApiResponse>(`http://localhost:3000/api/actions/${id}`, {
-//       headers: { 'Cache-Control': 'no-store' }
-//     });
-
-//     if (res.status !== 200) {
-//       throw new Error("Failed to fetch topics");
-//     }
-
-//     return res.data.topics;
-//   } catch (error) {
-//     console.error("Error loading topics: ", error);
-//   }
-// };
-
-export default function BlogCards() {
+export default function BlogCards() { 
   const [topics, setTopics] = useState<Topic[] | undefined>([]);
 
   useEffect(() => {
