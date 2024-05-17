@@ -1,74 +1,39 @@
 "use client";
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import Link from "next/link";
-import { SVGProps, useState, useEffect } from "react";
-import axios from 'axios';
+import { SVGProps, useEffect } from "react";
+import { usePosts } from '../context/postContext';
 import EditBlogDialog from "./editBlogDialog";
+import DeleteBlogDialog from "./deleteBlogDialog";
 
-interface Topic {
-  _id: string;
-  title: string;
-  content: string;
-  __v: number;
-}
-
-interface ApiResponse {
-  topics: Topic[];
-}
-
-const getTopics = async (): Promise<Topic[] | undefined> => {
-  try {
-    const res = await axios.get<ApiResponse>("http://localhost:3000/api/actions", {
-      headers: { 'Cache-Control': 'no-store' }
-    });
-
-    if (res.status !== 200) {
-      throw new Error("Failed to fetch topics");
-    }
-
-    return res.data.topics;
-  } catch (error) {
-    console.error("Error loading topics: ", error);
-  }
-};
-
-export default function BlogCards() { 
-  const [topics, setTopics] = useState<Topic[] | undefined>([]);
+const BlogCards = () => { 
+  const { posts, fetchPosts } = usePosts();
 
   useEffect(() => {
-    const fetchTopics = async () => {
-      const topicsData = await getTopics();
-      if (topicsData) {
-        setTopics(topicsData);
-      }
-    };
-    fetchTopics();
-  }, []);
+    fetchPosts();
+  }, [fetchPosts]);
 
   return (
     <>
-      {topics && topics.map((topic) => (
-        <div key={topic._id} className="space-y-4">
-          <Card className="relative text-wrap  min-w-[56rem] max-w-4xl rounded-lg shadow-md hover:shadow-lg transition-shadow">
-            <Link
-              className="absolute m-[22px] w-10 h-10 right-0 rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-red-800 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-              href=""
-            >
-              <DeleteIcon className="absolute right-[9.3px] top-[9.3px]" />
-            </Link>
-            <EditBlogDialog id={topic._id}/>
+      {posts.map((post) => (
+        <div key={post._id} className="space-y-4">
+          <Card className="relative text-wrap min-w-[56rem] max-w-4xl rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <DeleteBlogDialog id={post._id}/>
+            <EditBlogDialog id={post._id}/>
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-ellipsis overflow-hidden">{topic.title}</CardTitle>
+              <CardTitle className="text-2xl font-bold text-ellipsis overflow-hidden">{post.title}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4 p-4">
-              <p className="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden">{topic.content}</p>
+              <p className="text-gray-500 dark:text-gray-400 text-ellipsis overflow-hidden">{post.content}</p>
             </CardContent>
           </Card>
         </div>
       ))}
     </>
   );
-}
+};
+
+export default BlogCards;
 
 function DeleteIcon(props: SVGProps<SVGSVGElement>) {
   return (

@@ -22,7 +22,11 @@ export async function GET() {
 
 export async function DELETE(request: NextRequest) {
   const id = request.nextUrl.searchParams.get("id");
-  await dbConnect();
-  await BlogModel.findByIdAndDelete(id);
-  return NextResponse.json({ message: "Topic deleted" }, { status: 200 });
+  try {
+    await dbConnect();
+    await BlogModel.findByIdAndDelete(id);
+    return NextResponse.json({ message: "Topic deleted" }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ message: "Error deleting topic" }, { status: 500 });
+  }
 }

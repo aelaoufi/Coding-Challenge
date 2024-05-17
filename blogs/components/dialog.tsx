@@ -8,6 +8,7 @@ import Link from "next/link"
 import TextEditor from "./textEditor"
 import { useEffect, useState, FormEvent } from "react"
 import axios from 'axios';
+import { usePosts } from '../context/postContext';
 
 
 
@@ -16,32 +17,23 @@ export default function MyDialog() {
   const [title, setTitle] = useState<string>('');
   const [content, setContent] = useState<string>('');
   const [open, setOpen] = useState(false);
+  const { addPost } = usePosts();
 
   const handleContentChange = (newContent: string) => {
     setContent(newContent);
   };
 
   const handleSubmit = async (e: FormEvent) => {
-  
+    e.preventDefault();
     if (!title || !content) {
       alert("Title and content are required.");
       return;
     }
-  
-    try {
-      const res = await axios.post('http://localhost:3000/api/actions', { title, content }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (res.status !== 201) {
-        throw new Error("Failed to fetch topics");
-      }
-      setOpen(false);
-      console.log("Blog post created");
-    } catch (error) {
-      console.error(error);
-    }
+
+    addPost({ title, content });
+    setOpen(false);
+    setTitle('');
+    setContent('');
   };
 
   return (

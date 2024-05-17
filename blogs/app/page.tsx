@@ -1,14 +1,16 @@
 import BlogCards from "@/components/blogCards";
-import MyDialog from "@/components/dialog";
 import Navbar from "@/components/navbar";
-import Image from "next/image";
+import { PostsProvider } from '../context/postContext';
+import SearchBar from "@/components/searchBar";
 
 export default function Home() {
   return(
-    <div className="flex flex-col items-center gap-5">
-      <Navbar></Navbar>
-      <BlogCards/>
-      
-    </div>
+    <PostsProvider>
+      <div className="flex flex-col items-center gap-5">
+        <Navbar></Navbar>
+        <SearchBar/>
+        <BlogCards/>
+      </div>
+    </PostsProvider>
   );
 }
