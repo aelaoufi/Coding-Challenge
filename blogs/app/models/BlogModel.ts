@@ -11,7 +11,7 @@ const blogSchema = new Mongoose.Schema({
     required: false,
   },
 });
-//how our post looks like
+
 interface IBlog {
   title: string;
   content: string;
@@ -20,9 +20,6 @@ interface IBlog {
 interface IBlogDocument extends IBlog, Document {}
 interface IBlogModel extends Model<IBlogDocument> {}
 
-//postSchema->Document->Model
-
-// const BlogModel: IBlogModel = Mongoose.model<IBlogDocument>("post", postSchema);
 
 const BlogModel: IBlogModel =
   Mongoose.models.blogs || Mongoose.model<IBlogDocument>("blogs", blogSchema);

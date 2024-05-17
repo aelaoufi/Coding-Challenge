@@ -4,7 +4,7 @@ import {Dialog, DialogTrigger, DialogTitle, DialogHeader, DialogFooter, DialogCo
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { usePosts } from '../context/postContext';
-import TextEditor from "./textEditor"; // Adjust the import path based on your project structure
+import TextEditor from "./textEditor";
 
 interface EditPostDialogProps {
   id: string;
